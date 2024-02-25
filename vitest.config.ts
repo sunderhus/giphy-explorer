@@ -18,7 +18,7 @@ export default mergeConfig(
           "!**/styles.{ts,tsx}",
           "!**.d.ts",
           "!src/main",
-          "src/{data,presentation,domain,infra,validation}",
+          "src/{data,infra}",
         ],
       },
     },
