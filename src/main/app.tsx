@@ -1,10 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "@/presentation/assets/main.css";
-import { MakeHomeView } from "./main/factories/views/make-home-view";
+import { Toaster } from "sonner";
+import { Router } from "@/main/routes/router";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <MakeHomeView />
+    <Router />
+    <Toaster richColors closeButton />
   </React.StrictMode>
 );
