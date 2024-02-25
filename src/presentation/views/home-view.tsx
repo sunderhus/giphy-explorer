@@ -20,22 +20,26 @@ export function HomeView({ searchGiphys }: HomeProps) {
 
   const hasGiphysToShow = giphys.length > 0;
 
+  const validateForm = () => {
+    const hasSearchTerm = searchText.length !== 0;
+    const hasValidLength = searchText.length <= 50;
+    if (!hasValidLength) {
+      toast.warning("Provide a search with maximum 50 characters");
+    }
+    const isValid = hasSearchTerm && hasValidLength;
+    return { isValid };
+  };
+
   const onSearch = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     try {
       setIsLoading(true);
-      const noSearchText = searchText.length === 0;
-      if (noSearchText) {
-        toast.warning("Please, provide an search term");
-        return;
-      }
-      const searchTextIsTooLong = searchText.length > 50;
-      if (searchTextIsTooLong) {
-        toast.warning("Provide a search with maximum 50 characters");
-        return;
-      }
 
+      if (!validateForm().isValid) {
+        return;
+      }
       const results = await searchGiphys.search(searchText, 0);
+
       setGiphys([...results]);
     } catch (error) {
       toast.error("Looks like something went wrong with this search");
