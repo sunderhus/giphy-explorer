@@ -13,7 +13,8 @@ export const Dialog = React.forwardRef<DialogRef, Props>(
     const dialogRef = useRef<HTMLDialogElement>(null);
     const [selectedThumbnailIndex, setSelectedThumbnailIndex] = useState(0);
     const [imageIsLoading, setImageIsLoading] = useState(true);
-    const dialogImageSrc = thumbnails[selectedThumbnailIndex].url.maxQuality;
+    const dialogImageSrc =
+      thumbnails[selectedThumbnailIndex]?.url.maxQuality || "";
 
     const isLastItem = selectedThumbnailIndex + 1 >= thumbnails.length;
     const isFirstItem = selectedThumbnailIndex <= 0;
