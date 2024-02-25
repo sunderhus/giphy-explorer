@@ -1,3 +1,7 @@
 export interface Giphy {
-  url: string;
+  url: {
+    previewQuality: string;
+    maxQuality: string;
+  };
+  id: string;
 }

@@ -10,6 +10,7 @@ type RemoteGiphyImageVariations = {
   fixed_width: { url: string };
 };
 type RemoteGiphy = {
+  id: string;
   images: RemoteGiphyImageVariations;
 };
 type RemoteGiphyResponse = {
@@ -31,7 +32,7 @@ export class SearchGiphysService implements SearchGiphysUseCase {
 
     switch (response.statusCode) {
       case HttpStatusCode.ok:
-        return this.adapt(response.body as RemoteGiphyResponse);
+        return this.adapt(response.body as RemoteGiphyResponse, offSet);
       case HttpStatusCode.badRequest:
         throw new Error("Invalid request");
       default:
@@ -39,13 +40,17 @@ export class SearchGiphysService implements SearchGiphysUseCase {
     }
   }
 
-  private adapt(response: RemoteGiphyResponse) {
+  private adapt(response: RemoteGiphyResponse, offSet: number): Giphy[] {
     if (!response) {
       return [];
     }
 
     return response.data.map((giphy) => ({
-      url: giphy.images.fixed_width.url,
+      id: `${giphy.id}-${offSet}`,
+      url: {
+        previewQuality: giphy.images.fixed_width.url,
+        maxQuality: giphy.images.original.url,
+      },
     }));
   }
 }
