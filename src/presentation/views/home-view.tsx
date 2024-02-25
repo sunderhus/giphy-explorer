@@ -4,6 +4,8 @@ import { Footer } from "@/presentation/components/footer";
 import { Header } from "@/presentation/components/header";
 import { SearchGiphysUseCase } from "@/domain/use-cases/SearchGiphys";
 import { Giphy } from "@/domain/models/Giphy";
+import { Gallery } from "../components/gallery";
+import { toast } from "sonner";
 
 interface HomeProps {
   searchGiphys: SearchGiphysUseCase;
@@ -22,10 +24,21 @@ export function HomeView({ searchGiphys }: HomeProps) {
     event.preventDefault();
     try {
       setIsLoading(true);
+      const noSearchText = searchText.length === 0;
+      if (noSearchText) {
+        toast.warning("Please, provide an search term");
+        return;
+      }
+      const searchTextIsTooLong = searchText.length > 50;
+      if (searchTextIsTooLong) {
+        toast.warning("Provide a search with maximum 50 characters");
+        return;
+      }
+
       const results = await searchGiphys.search(searchText, 0);
       setGiphys([...results]);
     } catch (error) {
-      console.log(error);
+      toast.error("Looks like something went wrong with this search");
     } finally {
       setIsLoading(false);
     }
@@ -37,9 +50,9 @@ export function HomeView({ searchGiphys }: HomeProps) {
       const nextOffSet = offSet + 1;
       const results = await searchGiphys.search(searchText, nextOffSet);
       setOffset(nextOffSet);
-      setGiphys((state) => [...results, ...state]);
+      setGiphys((state) => [...state, ...results]);
     } catch (error) {
-      console.log(error);
+      toast.error("Something went wrong, please try again");
     } finally {
       setIsLoading(false);
     }
@@ -81,7 +94,7 @@ export function HomeView({ searchGiphys }: HomeProps) {
             />
           </div>
           <button
-            className="bg-violet-400 text-violet-950 font-semibold hover:ring-2 hover:ring-purple-900 outline-none max-lg:w-full h-12 w-32 p-3 text-center"
+            className="bg-violet-400 text-violet-950 font-semibold hover:ring-2 hover:ring-purple-900 outline-none max-lg:w-full h-12 w-48 p-3 text-center"
             type="submit"
             disabled={isLoading}
           >
@@ -91,7 +104,7 @@ export function HomeView({ searchGiphys }: HomeProps) {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-900 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-violet-500"></span>
                 </span>
-                Loading
+                Loading Giphys
               </div>
             ) : (
               "Search"
@@ -100,30 +113,25 @@ export function HomeView({ searchGiphys }: HomeProps) {
         </form>
       </section>
 
-      {!hasGiphysToShow && (
-        <p className="text-gray-100">waiting for you awesome search</p>
-      )}
+      {!hasGiphysToShow ? (
+        <p className="font-extrabold text-8xl text-gray-100">
+          waiting for an awesome search ...
+        </p>
+      ) : (
+        <section className="flex flex-col gap-4">
+          <Gallery thumbnails={giphys} />
 
-      <section>
-        <button
-          type="button"
-          disabled={isLoading}
-          className="text-gray-100 p-4 bg-yellow-400 mb-4"
-          onClick={handleLoadMore}
-        >
-          LoadMore
-        </button>
-        <div className="grid grid-cols-gallery gap-3">
-          {giphys.map((giphy) => (
-            <img
-              className="aspect-video w-full h-48 object-cover rounded-s-sm rounded-e-3xl"
-              key={giphy.url}
-              src={giphy.url}
-              alt="giphy image"
-            />
-          ))}
-        </div>
-      </section>
+          <button
+            type="button"
+            disabled={isLoading}
+            className="text-slate-900 font-semibold p-4 bg-yellow-400 mb-4 w-full md:w-72 self-center
+            disabled:bg-slate-400 disabled:hover:bg-slate-400 "
+            onClick={handleLoadMore}
+          >
+            Load More
+          </button>
+        </section>
+      )}
 
       <Footer />
     </PageTemplate>
