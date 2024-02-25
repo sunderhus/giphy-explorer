@@ -26,3 +26,6 @@ dist-ssr
 # avoid environment files
 .env*
 !.env-example
+
+# coverage files
+coverage

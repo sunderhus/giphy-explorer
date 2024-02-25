@@ -9,3 +9,8 @@ A project that connects to the Giphy API to provide a pleasant user experience w
 - copy .env-example and rename to .env
 - add to your new .env file the GIPHY API
 - run the dev command and access your localhost url
+
+## Tests
+
+After the setup, run the script `test`, to execute all unit tests on this project.
+For coverage reports, run the script `test:coverage`
