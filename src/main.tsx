@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { HomeView } from "@/presentation/views/home-view";
 import "@/presentation/assets/main.css";
+import { MakeHomeView } from "./main/factories/views/make-home-view";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
-    <HomeView />
+    <MakeHomeView />
   </React.StrictMode>
 );
