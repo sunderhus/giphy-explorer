@@ -117,11 +117,7 @@ export function HomeView({ searchGiphys }: HomeProps) {
         </form>
       </section>
 
-      {!hasGiphysToShow ? (
-        <p className="font-extrabold text-8xl text-gray-100">
-          waiting for an awesome search ...
-        </p>
-      ) : (
+      {hasGiphysToShow ? (
         <section className="flex flex-col gap-4">
           <Gallery thumbnails={giphys} />
 
@@ -129,12 +125,16 @@ export function HomeView({ searchGiphys }: HomeProps) {
             type="button"
             disabled={isLoading}
             className="text-slate-900 font-semibold p-4 bg-yellow-400 mb-4 w-full md:w-72 self-center
-            disabled:bg-slate-400 disabled:hover:bg-slate-400 "
+           disabled:bg-slate-400 disabled:hover:bg-slate-400 "
             onClick={handleLoadMore}
           >
             Load More
           </button>
         </section>
+      ) : (
+        <p className="font-extrabold text-5xl md:text-8xl text-gray-100 break-before-auto">
+          waiting for an awesome search ...
+        </p>
       )}
 
       <Footer />
