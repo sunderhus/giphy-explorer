@@ -14,3 +14,8 @@ A project that connects to the Giphy API to provide a pleasant user experience w
 
 After the setup, run the script `test`, to execute all unit tests on this project.
 For coverage reports, run the script `test:coverage`
+
+### Next Step
+- add full coverage report.
+- add caching to the giphy search.
+- improve toast feedbacks on API request errors.
