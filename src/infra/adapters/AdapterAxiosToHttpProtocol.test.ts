@@ -30,4 +30,26 @@ describe('AdapterAxiosToHttpProtocol',()=>{
             method:'GET'
         })
     })
+
+    it('should return correct response when request fails',()=>{
+        const {sut, requestSpy} = makeSut()
+        const mockTestUrl = 'fake-test-url'
+        requestSpy.mockRejectedValueOnce({response:{
+            data:{apiStubData:'bar'},
+            status:589
+        }})
+
+        const result =  sut.request({
+            url: mockTestUrl,
+            method: "GET"
+        })
+
+        expect(result).resolves.toEqual({
+            body: {
+                apiStubData:'bar',
+            },
+            statusCode:589
+        })
+
+    })
 })
