@@ -52,4 +52,26 @@ describe('AdapterAxiosToHttpProtocol',()=>{
         })
 
     })
+
+    it('should return parsed data on success request',async()=>{
+        const {sut, requestSpy} = makeSut()
+        const mockResponse = {
+            data:{apiStubData:'bar'},
+            status:200
+        }
+        requestSpy.mockResolvedValueOnce({
+            data:{apiStubData:'bar'},
+            status:200
+        })
+
+        const result = await sut.request({
+            url: 'stub-url',
+            method: "GET"
+        })
+
+        expect(result).toEqual({
+            body:mockResponse.data,
+            statusCode:mockResponse.status
+        })
+    })
 })
