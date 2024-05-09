@@ -1,0 +1,60 @@
+{
+  "name": "giphy-explorer-20240509135726",
+  "bucket": "giphy-explorer-20240509135726",
+  "preset": "react",
+  "mode": "deliver",
+  "env": "production",
+  "prefix": "20240509135725",
+  "not-first-run": true,
+  "function": {
+    "id": 23122,
+    "name": "__DEFAULT__",
+    "file": ".edge/worker.js",
+    "args": "./azion/args.json",
+    "instance-id": 22664,
+    "instance-name": "__DEFAULT__"
+  },
+  "application": {
+    "id": 1715263889,
+    "name": "__DEFAULT__"
+  },
+  "domain": {
+    "id": 1715262368,
+    "name": "giphy-explorer-20240509135726",
+    "domain_name": "zwedbgxmva.map.azionedge.net",
+    "url": "https://zwedbgxmva.map.azionedge.net"
+  },
+  "rt-purge": {
+    "purge_on_publish": true
+  },
+  "origin": [
+    {
+      "origin-id": 132801,
+      "origin-key": "949775f7-fcbc-4a7e-8537-da6305c2c148",
+      "name": "giphy-explorer-20240509135726_single"
+    },
+    {
+      "origin-id": 132802,
+      "origin-key": "57f4bd31-2378-4fcd-8adc-fcaa0cf984dc",
+      "name": "origin-storage-default"
+    }
+  ],
+  "rules-engine": {
+    "created": false,
+    "rules": [
+      {
+        "id": 250803,
+        "name": "Main_Rule"
+      },
+      {
+        "id": 250804,
+        "name": "Index_Rewrite_1"
+      },
+      {
+        "id": 250805,
+        "name": "Index_Rewrite_2"
+      }
+    ]
+  },
+  "cache-settings": null
+}
