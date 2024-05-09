@@ -1,41 +1,41 @@
 {
-  "name": "giphy-explorer-20240509135726",
-  "bucket": "giphy-explorer-20240509135726",
+  "name": "giphy-explorer-20240509140310",
+  "bucket": "giphy-explorer-20240509140310",
   "preset": "react",
   "mode": "deliver",
   "env": "production",
-  "prefix": "20240509135725",
+  "prefix": "20240509140310",
   "not-first-run": true,
   "function": {
-    "id": 23122,
+    "id": 23125,
     "name": "__DEFAULT__",
     "file": ".edge/worker.js",
     "args": "./azion/args.json",
-    "instance-id": 22664,
+    "instance-id": 22667,
     "instance-name": "__DEFAULT__"
   },
   "application": {
-    "id": 1715263889,
+    "id": 1715263892,
     "name": "__DEFAULT__"
   },
   "domain": {
-    "id": 1715262368,
-    "name": "giphy-explorer-20240509135726",
-    "domain_name": "zwedbgxmva.map.azionedge.net",
-    "url": "https://zwedbgxmva.map.azionedge.net"
+    "id": 1715262373,
+    "name": "giphy-explorer-20240509140310",
+    "domain_name": "z02rfs0qt7.map.azionedge.net",
+    "url": "https://z02rfs0qt7.map.azionedge.net"
   },
   "rt-purge": {
     "purge_on_publish": true
   },
   "origin": [
     {
-      "origin-id": 132801,
-      "origin-key": "949775f7-fcbc-4a7e-8537-da6305c2c148",
-      "name": "giphy-explorer-20240509135726_single"
+      "origin-id": 132806,
+      "origin-key": "fc74eca9-ebfb-490f-b469-d7ba1f3537ee",
+      "name": "giphy-explorer-20240509140310_single"
     },
     {
-      "origin-id": 132802,
-      "origin-key": "57f4bd31-2378-4fcd-8adc-fcaa0cf984dc",
+      "origin-id": 132807,
+      "origin-key": "18b29826-1146-442c-910a-8f33a9ff1527",
       "name": "origin-storage-default"
     }
   ],
@@ -43,15 +43,15 @@
     "created": false,
     "rules": [
       {
-        "id": 250803,
+        "id": 250816,
         "name": "Main_Rule"
       },
       {
-        "id": 250804,
+        "id": 250817,
         "name": "Index_Rewrite_1"
       },
       {
-        "id": 250805,
+        "id": 250818,
         "name": "Index_Rewrite_2"
       }
     ]
